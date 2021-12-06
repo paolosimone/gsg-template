@@ -16,21 +16,19 @@ Requirements:
 1. Login to [Google Cloud Platform](https://console.cloud.google.com/home/dashboard)
 1. Create a new project
 1. In "API & Services"->"Library" enable Google Sheets API
-1. In "API & Services"->"Credentials" create a new API Key (`API_KEY`)
-    - restrict access to the Google Sheets API
-1. In "API & Services"->"Credentials" create a new Service Account
+1. In "API & Services"->"Credentials" create a new Service Account `SERVICE_ACCOUNT` and add a key
     - IMPORTANT: safely store the JSON file containing the account private key `PRIVATE_KEY`
 
 ### Create the GSheet
 
 1. Create a new Google Sheet
-    - take note of the sheet id `spreadsheetId` from the url 
+    - take note of the sheet id `SPREADSHEET` from the url 
 1. Click "Share" and provide read access to the Service Account
 1. Insert data as you want (manually, with GForms, scripting...)
 
 ### Build Script
 
-1. Read `API_KEY` and `PRIVATE_KEY` from environment variables
+1. Read `SERVICE_ACCOUNT` and `PRIVATE_KEY` from environment variables
 1. Use those secrets to retrieve the spreadsheet content
     1. Authenticate using OAuth 2.0 and obtain a JWT token ([API docs](https://developers.google.com/identity/protocols/oauth2/service-account#authorizingrequests))
     1. Use JWT token to get spreadsheet values ([API docs](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/get))
@@ -45,7 +43,7 @@ Take a look at the simple example `build.js` on how to perform those steps using
     1. Checkout repository
     1. Run the build script
     1. Commit and push the `docs` folder
-1. Add `API_KEY` and `PRIVATE_KEY` as Github Actions secrets ([Github documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets))
+1. Add `SERVICE_ACCOUNT` and `PRIVATE_KEY` as Github Actions secrets ([Github documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets))
 
 Take a look at the `.github/workflows/build-and-publish.yaml` as a sample reference.
 
